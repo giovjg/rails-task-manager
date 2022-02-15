@@ -14,8 +14,8 @@ class TasksController < ApplicationController
   end
 
   def create
-    @tasks = Task.new(params[:task])
-    @tasks.save
+    @task = Task.new(params[:task])
+    @task.save
     # no need for app/views/tasks/create.html.erb
     redirect_to task_path(@task) # need to pass an id so @task and rediretc to the show page
   end
@@ -34,7 +34,7 @@ class TasksController < ApplicationController
     redirect_to task_path(@task)
   end
 
-  def set_restaurant
+  def set_task
     @task = Task.find(params[:id])
   end
 end
