@@ -1,6 +1,6 @@
 class TasksController < ApplicationController
   def index
-    @task = Task.all
+    @tasks = Task.all
   end
 
   def show
@@ -13,9 +13,25 @@ class TasksController < ApplicationController
   end
 
   def create
-    @task = task.new(params[:task])
-    @task.save
-      # no need for app/views/tasks/create.html.erb
-    redirect_to task_path(@task) # need to pass an id so @task and rediretc to the show page
+    @tasks = task.new(params[:task])
+    @tasks.save
+    # no need for app/views/tasks/create.html.erb
+    #redirect_to task_path(@task) # need to pass an id so @task and rediretc to the show page
+  end
+
+  def edit
+    @task = task.find(params[:id])
+  end
+
+  def update
+    @task = task.find(params[:id])
+    @task.update(params[:task])
+    redirect_to task_path(@task)
+  end
+
+  def destroy
+  @task = task.find(params[:id])
+  @task.destroy
+  redirect_to task_path(@task)
   end
 end
