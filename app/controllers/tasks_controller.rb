@@ -1,11 +1,12 @@
 class TasksController < ApplicationController
+  before_action :set_task, only: [:show, :edit, :update, :destroy]
   def index
     @tasks = Task.all
   end
 
   def show
   # raise type params in the console
-    @task = Task.find(params[:id])
+   # @task = Task.find(params[:id])
   end
 
   def new
@@ -20,18 +21,20 @@ class TasksController < ApplicationController
   end
 
   def edit
-    @task = Task.find(params[:id])
+    # @task = Task.find(params[:id])
   end
 
   def update
-    @task = Task.find(params[:id])
     @task.update(params[:task])
     redirect_to task_path(@task)
   end
 
   def destroy
-    @task = Task.find(params[:id])
     @task.destroy
     redirect_to task_path(@task)
+  end
+
+  def set_restaurant
+    @task = Task.find(params[:id])
   end
 end
